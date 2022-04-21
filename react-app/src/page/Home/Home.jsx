@@ -1,23 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
+import commerce from "../../Ecommerce";
 import Navbar from "../../components/Navbar";
 import Header from "../../components/Header";
 import ProductList from "../../components/ProductList";
 import Footer from "../../components/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/pagination";
+import { Pagination } from "swiper";
 import "swiper/css";
 
+
 function Home() {
+    const [brands, setBrands] = useState([])
+    const [mostselled, setMostselled] = useState([])
+    const [newPhone, setNewPhone] = useState([])
+    const [accessories, setNewAccessories] = useState([])
+
+    const fetchProducts = async () => {
+        const { data } = await commerce.products.list({ category_slug: ['phone'] });
+        setMostselled(data.slice(0, 4))
+    }
+
+    const fetchNewPhone = async () => {
+        const { data } = await commerce.products.list({ category_slug: ['newphone'] });
+        setNewPhone(data.slice(0, 4))
+    }
+
+    const fetchNewAccessories = async () => {
+        const { data } = await commerce.products.list({ category_slug: ['accessories'] });
+        setNewAccessories(data.slice(0, 4))
+    }
+
+    useEffect(() => {
+        commerce.products.list({ category_slug: ['brands'] }).then((product) => setBrands(product.data));
+
+        fetchProducts()
+        fetchNewPhone()
+        fetchNewAccessories()
+    }, [])
+
     return (
         <div>
             <Navbar />
             <Header />
-            <ProductList title="Ən çox satılan məhsullar"/>
-            <ProductList title="Yeni gələn məhsullar"/>
+            <ProductList title="Ən çox satılan məhsullar" products={mostselled} />
+            <ProductList title="Yeni gələn məhsullar" products={newPhone} />
             <Advertise />
-            <ProductList title="Yeni gələn aksessuarlar"/>
+            <ProductList title="Yeni gələn aksessuarlar" products={accessories}/>
             <Count />
             <Advantages />
-            <Brands />
+            <Brands brands={brands} />
             <Footer />
         </div>
     );
@@ -102,62 +134,27 @@ export const Count = () => {
 };
 
 
-export const Brands = () => {
+export const Brands = ({ brands }) => {
     return (
-        <section className="brands">
+        <section id="brands">
             <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <Swiper
-                            spaceBetween={16}
-                            slidesPerView={6}
-                            onSlideChange={() => console.log("slide change")}
-                            onSwiper={(swiper) => console.log(swiper)}
-                        >
-                            <SwiperSlide>
-                                <div className="swiperslide">
-                                    <img src={require("../../assets/Images/toshiba.png")} alt="" />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="swiperslide">
-                                    <img src={require("../../assets/Images/philips.png")} alt="" />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="swiperslide">
-                                    <img src={require("../../assets/Images/hp.png")} alt="" />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="swiperslide">
-                                    <img src={require("../../assets/Images/electrolux.png")} alt="" />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="swiperslide">
-                                    <img src={require("../../assets/Images/gorenje.png")} alt="" />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="swiperslide">
-                                    <img src={require("../../assets/Images/bosch.png")} alt="" />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="swiperslide">
-                                    <img src={require("../../assets/Images/toshiba.png")} alt="" />
-                                </div>
-                            </SwiperSlide>
-
-                            <div className="dots">
-                                <div></div>
-                                <div></div>
-                                <div></div>
+                <Swiper
+                    slidesPerView={6}
+                    spaceBetween={30}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Pagination]}
+                    className="mySwiper"
+                >
+                    {brands.map((el, index) => (
+                        <SwiperSlide>
+                            <div key={index} className="swiperslide">
+                                <img src={el.image.url} alt="logo" />
                             </div>
-                        </Swiper>
-                    </div>
-                </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
         </section>
     );
