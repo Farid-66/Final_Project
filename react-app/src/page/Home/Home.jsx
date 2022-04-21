@@ -55,40 +55,30 @@ function Home() {
     );
 }
 
-export const Advantages = () => {
+export const Advantages = ({datas}) => {
     return (
-        <section id="advantages">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 col-lg-4">
-                        <div>
-                            <img src={require("../../assets/Images/box.png")} alt="" />
-                            <span>Çatdirilma</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
-                        </div>
-                    </div>
-                    <div className="col-12 col-lg-4">
-                        <div>
-                            <img src={require("../../assets/Images/credit.png")} alt="" />
-                            <span>Kredit</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
-                        </div>
-                    </div>
-                    <div className="col-12 col-lg-4">
-                        <div>
-                            <img src={require("../../assets/Images/achievement.png")} alt="" />
-                            <span>Zəmanət</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-        </section>
+      <section id="advantages" className="container">
+        <div>
+          <img src={require('../../assets/Images/box.png')} alt="" />
+          <span>Çatdirilma</span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
+        </div>
+        <div> 
+          {/* {datas.map((el,index)=>(
+           <img key={index} src={el.image.url} alt='logo'/>
+          ))} */}
+        <img src={require('../../assets/Images/credit.png')} alt="" />
+          <span>Kredit</span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
+        </div>
+        <div>
+        <img src={require('../../assets/Images/achievement.png')} alt="" />
+          <span>Zəmanət</span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
+        </div>
+      </section>
     );
-};
+  };
 
 export const Advertise = () => {
     return (
@@ -96,10 +86,10 @@ export const Advertise = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-lg-6">
-                        <img src={require("../../assets/Images/Rectangle168.jpg")} />
+                        <img src={require("../../assets/Images/Rectangle168.jpg")} alt="page not found" />
                     </div>
                     <div className="col-12 col-lg-6">
-                        <img src={require("../../assets/Images/Rectangle169.jpg")} />
+                        <img src={require("../../assets/Images/Rectangle169.jpg")} alt="page not found"/>
                     </div>
                 </div>
             </div>
@@ -109,29 +99,29 @@ export const Advertise = () => {
 
 export const Count = () => {
     return (
-        <section id="count">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 col-lg-6">
-                        <img src={require("../../assets/Images/Screenshot3.png")} />
-                    </div>
-                    <div className="col-12 col-lg-6">
-                        <div className="row">
-                            <div className="col-12">
-                                <img src={require("../../assets/Images/Screenshot1.png")} />
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-12">
-                                <img src={require("../../assets/Images/Screenshot2.png")} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-};
+      <section id="count" className='container'>
+        <div className="count_first">
+          <div>
+            <h3>Telefon</h3>
+            <span>Məhsul sayi: 322</span>
+            <a href="##">Məhsullara keçid {">"} </a>
+          </div>
+        </div>
+        <div className="count_second">
+          <div>
+            <h3>Smart saat</h3>
+            <span>Məhsul sayi: 46</span>
+            <a href="##">Məhsullara keçid {">"} </a>
+          </div>
+          <div>
+            <h3>Aksesuar</h3>
+            <span>Məhsul sayi: 891</span>
+            <a href="##">Məhsullara keçid {">"} </a>
+           </div>
+        </div>
+      </section>
+    )
+  }
 
 
 export const Brands = ({ brands }) => {

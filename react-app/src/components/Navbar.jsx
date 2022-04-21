@@ -10,7 +10,7 @@ function navbar() {
                         <div className='d-flex'>
                             <button className='menu-btn'><i class="fa-solid fa-bars"></i></button>
                             <div className='logo'>
-                                <img src={require('../../src/assets/Images/Tello.png')} />
+                                <img src={require('../../src/assets/Images/Tello.png')} alt="not found"/>
                                 <span>Tello</span>
                             </div>
                         </div>

@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react'
-
 function ProtuctList(props) {
 
     return (
@@ -24,7 +22,7 @@ function ProtuctList(props) {
                                             </button>
                                         </div>
                                         <div className='prodct-img'>
-                                            <img src={e.image.url} />
+                                            <img src={e.image.url} alt="not found"/>
                                         </div>
                                         <div className='prodct-title'>
                                             <h3>{e.name}</h3>
